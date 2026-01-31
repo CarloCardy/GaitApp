@@ -263,8 +263,32 @@ const extractDeviceIdFromName = (fileName?: string): string | null => {
   if (!fileName) {
     return null;
   }
-  const match = fileName.match(/_([0-9A-F]{8})\.txt$/i);
-  return match?.[1] ?? null;
+  
+  // Pattern for MT_ format: MT_012100F3_000-000_00B4CAF0
+  const mtPattern = /MT_[0-9A-F]+_[0-9-]+_([0-9A-F]{8})$/i;
+  const match = fileName.match(mtPattern);
+  if (match?.[1]) {
+    return match[1];
+  }
+  
+  // Try other patterns as fallback
+  const patterns = [
+    /_([0-9A-F]{8})\.txt$/i,           // _XXXXXXXX.txt
+    /_([0-9A-F]{6})\.txt$/i,           // _XXXXXX.txt
+    /([0-9A-F]{8})\.txt$/i,           // XXXXXXXX.txt
+    /([0-9A-F]{6})\.txt$/i,           // XXXXXX.txt
+    /sensor[_-]?(\w+)(?:_\d+)?\.txt$/i, // sensor_X.txt or sensor-X_1.txt
+  ];
+  
+  for (const pattern of patterns) {
+    const match = fileName.match(pattern);
+    if (match?.[1]) {
+      return match[1];
+    }
+  }
+  
+  // Fallback: use a generic ID if no pattern matches
+  return "DEFAULT";
 };
 
 const extractBaseName = (fileName: string | undefined, deviceId: string): string => {

@@ -12,7 +12,7 @@ import {
   View,
 } from "react-native";
 import * as DocumentPicker from "expo-document-picker";
-import * as FileSystem from "expo-file-system";
+import * as FileSystem from "expo-file-system/legacy";
 import Svg, { G, Line, Path, Rect, Text as SvgText } from "react-native-svg";
 import { ImuDataDao } from "./src/data/ImuDataDao";
 import { TxtImuSource } from "./src/data/sources/TxtImuSource";
@@ -39,16 +39,17 @@ export default function App() {
     const txtSourceInstance = new TxtImuSource();
     const sources: ImuDataSource[] = [txtSourceInstance];
 
-    if (bleAvailable) {
-      const { BluetoothImuSource } =
-        require("./src/data/sources/BluetoothImuSource") as typeof import("./src/data/sources/BluetoothImuSource");
-      sources.push(
-        new BluetoothImuSource({
-          serviceUuid: "0000180f-0000-1000-8000-00805f9b34fb",
-          characteristicUuid: "00002a19-0000-1000-8000-00805f9b34fb",
-        })
-      );
-    }
+    // Temporarily disable Bluetooth for Expo Go compatibility
+    // if (bleAvailable) {
+    //   const { BluetoothImuSource } =
+    //     require("./src/data/sources/BluetoothImuSource") as typeof import("./src/data/sources/BluetoothImuSource");
+    //   sources.push(
+    //     new BluetoothImuSource({
+    //       serviceUuid: "0000180f-0000-1000-8000-00805f9b34fb",
+    //       characteristicUuid: "00002a19-0000-1000-8000-00805f9b34fb",
+    //     })
+    //   );
+    // }
 
     return { dao: new ImuDataDao(sources), txtSource: txtSourceInstance };
   }, [bleAvailable]);

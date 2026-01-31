@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "GaitApp",
+    "slug": "gaitapp",
+    "version": "0.1.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "orientation": "portrait",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.gait.app",
+      "infoPlist": {
+        "NSBluetoothAlwaysUsageDescription": "Usiamo il Bluetooth per collegare i sensori IMU.",
+        "NSBluetoothPeripheralUsageDescription": "Usiamo il Bluetooth per collegare i sensori IMU."
+      }
+    },
+    "android": {
+      "package": "com.gait.app",
+      "permissions": [
+        "BLUETOOTH",
+        "BLUETOOTH_ADMIN",
+        "BLUETOOTH_CONNECT",
+        "BLUETOOTH_SCAN",
+        "ACCESS_FINE_LOCATION"
+      ],
+      "splash": {
+        "image": null,
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f8d8fe06-dbaf-4811-aca3-037ddc0743d9"
+      }
+    }
+  }
+}

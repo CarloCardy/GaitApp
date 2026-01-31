@@ -1,1 +1,41 @@
-Materiale Informativo/BIOINGEGNERIA DELLA RIABILITAZIONE.pdf
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Expo
+.expo/
+dist/
+web-build/
+
+# IDE
+.vscode/
+.idea/
+
+# Materiale Informativo
+Materiale Informativo/
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
+/node_modules
+/node_modules
